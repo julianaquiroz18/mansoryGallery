@@ -12,6 +12,7 @@ function makeImagesCards(images, htmlNode) {
         const imageTitle = image.tags;
         return cardMarkup(imageURL, imageTitle);
     });
+    htmlNode.innerHTML = "";
     htmlNode.innerHTML += imagesHTML.join("\n");
     htmlNode.querySelectorAll('.card').forEach((card) => card.addEventListener('mouseenter', animateImage));
     htmlNode.querySelectorAll('.card').forEach((card) => card.addEventListener('mouseleave', hideTitle));

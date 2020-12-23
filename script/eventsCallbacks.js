@@ -7,7 +7,7 @@ function animateImage(e) {
         { transform: "scale(1.25)" },
         { transform: "scale(1)" },
     ], {
-        duration: 1000,
+        duration: 700,
         easing: "linear"
     })
 }
