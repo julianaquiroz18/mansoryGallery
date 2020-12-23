@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>Mansory Gallery</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="py-5">Mansory Gallery</h1>
+    </div>
+    <div class="container mb-4">
+        <div class="row justify-content-between m-0">
+            <div class="input-group col-6 p-0">
+                <select class="custom-select" id="category">
+                  <option selected>Filter by...</option>
+                  <option value="backgrounds">Backgrounds</option>
+                  <option value="fashion">Fashion</option>
+                  <option value="nature">Nature</option>
+                  <option value="science">Science</option>
+                  <option value="education">Education</option>
+                  <option value="feelings">Feelings</option>
+                  <option value="health">Health</option>
+                  <option value="people">People</option>
+                  <option value="religion">Religion</option>
+                  <option value="places">Places</option>
+                  <option value="animals">Animals</option>
+                  <option value="industry">Industry</option>
+                  <option value="computer">Computer</option>
+                  <option value="food">Food</option>
+                  <option value="sports">Sports</option>
+                  <option value="transportation">Transportation</option>
+                  <option value="travel">Travel</option>
+                  <option value="buildings">Buildings</option>
+                  <option value="business">Business</option>
+                  <option value="music">Music</option>
+                </select>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary filter" type="button">Go</button>
+                </div>
+            </div>
+            <div>
+                <button type="button" class="btn btn-secondary"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Add new image</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card-columns mansoryGallery">
+            <!-- <div class="card position-relative">
+                <a href="https://pixabay.com/get/53e8d147425bae14f6da8c7dda793677133ed6e452546c48732f73d3944bc65eb0_1280.jpg" target="blank"><img class="card-img-top image" src="https://pixabay.com/get/53e8d147425bae14f6da8c7dda793677133ed6e452546c48732f73d3944bc65eb0_1280.jpg" alt="lobo"></a>
+                <div class="d-flex p-2 justify-content-between align-items-baseline hidden card__header position-absolute">
+                    <h4 class="text-white m-0">Lobo blanco blanco hilo frio dolor</h4>
+                    <button type="button" class="btn btn-sm btn-outline-light"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <script type="module" src="./script/initial.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
