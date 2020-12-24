@@ -4,6 +4,10 @@
     background-color: #00000080;
 }
 
+.title {
+    text-transform: capitalize;
+}
+
 .hidden {
     opacity: 0;
 }
@@ -19,9 +23,9 @@
 
 .card {
     transform: scale(0.9);
-    filter: grayscale(60%);
-    margin: 0 !important;
+    filter: grayscale(35%);
     transition: all 0.5s linear;
+    margin: 0 !important;
 }
 
 .card:hover {
@@ -38,7 +42,7 @@
 .card img {
     min-width: 200px;
     min-height: 200px;
-    transition: all 0.3s linear;
+    transition: all 1s ease-out;
 }
 
 @keyframes zoomIn {

@@ -1,4 +1,4 @@
-import { animateImage, hideTitle, deleteImage } from './eventsCallbacks.js'
+const cache = {};
 
 /**
  * @method makeImagesCards
@@ -31,22 +31,35 @@ const cardMarkup = ((id, url, title) => {
     <div class="card position-relative">
         <a href="${url}" target="blank"><img class="img-${id} card-img-top image" src="./assets/loading.gif" alt="${title}"></a>
         <div class="d-flex p-2 justify-content-between align-items-baseline hidden card__header position-absolute">
-            <h4 class="text-white m-0">${title}</h4>
+            <h4 class="text-white m-0 title">${title}</h4>
             <button type="button" class="btn btn-sm btn-outline-light ml-1 delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
         </div>
     </div>`
 });
 
+function deleteImage(e) {
+    e.currentTarget.parentNode.parentNode.classList.add('d-none');
+}
+
+
+
 async function loadImage(imagePath, where) {
     const target = document.querySelector(where);
+    //target.onload = () => target.style.filter = '';
+    // if (cache[where]) {
+    //     target.style.filter = 'opacity(0)';
+    //     target.src = cache[where];
+    //     return;
+    // }
     try {
         const response = await fetch(imagePath);
         if (response.ok) {
             target.style.filter = 'opacity(0)';
             const miBlob = await response.blob()
             const objectURL = URL.createObjectURL(miBlob);
-            target.onload = () => target.style.filter = '';
+            //cache[where] = objectURL;
             target.src = objectURL;
+            target.onload = () => target.style.filter = 'opacity(1)';
         } else {
             console.log('Respuesta de red OK pero respuesta HTTP no OK');
         }
