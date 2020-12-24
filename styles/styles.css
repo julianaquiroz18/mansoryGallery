@@ -6,12 +6,6 @@
 
 .hidden {
     opacity: 0;
-    animation: fadeOut 0.5s linear;
-}
-
-.appear {
-    opacity: 1;
-    animation: fadeIn 0.5s linear;
 }
 
 @keyframes fadeIn {
@@ -23,11 +17,35 @@
     }
 }
 
-@keyframes fadeOut {
+.card {
+    transform: scale(0.9);
+    filter: grayscale(60%);
+    margin: 0 !important;
+    transition: all 0.5s linear;
+}
+
+.card:hover {
+    filter: grayscale(0%);
+    transform: scale(1);
+    z-index: 100;
+}
+
+.card:hover .card__header {
+    opacity: 1;
+    animation: fadeIn 0.5s linear;
+}
+
+.card img {
+    min-width: 200px;
+    min-height: 200px;
+    transition: all 0.3s linear;
+}
+
+@keyframes zoomIn {
     0% {
-        opacity: 1;
+        transform: scale(1);
     }
     100% {
-        opacity: 0;
+        transform: scale(1.25);
     }
 }
