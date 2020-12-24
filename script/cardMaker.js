@@ -1,5 +1,3 @@
-const cache = {};
-
 /**
  * @method makeImagesCards
  * @description Get images data and create cards
@@ -22,6 +20,7 @@ function makeImagesCards(images, htmlNode) {
 /**
  * @method cardMarkup
  * @description Card marking method
+ * @param {string} id
  * @param {string} url
  * @param {string} title
  * @returns {string}
@@ -37,39 +36,75 @@ const cardMarkup = ((id, url, title) => {
     </div>`
 });
 
+/**
+ * @method myGalleryCardMaker
+ * @description Get images data and create cards
+ * @param {object} imageInfo
+ * @param {object} htmlNode
+ */
+function myGalleryCardMaker(imageInfo, htmlNode) {
+    const { link, page, title, category } = imageInfo;
+    const card = myImageCardMarkup(link, page, title, category);
+    htmlNode.innerHTML += card;
+    htmlNode.querySelectorAll('.delete').forEach((button) => button.addEventListener('click', deleteImage));
+};
+
+/**
+ * @method myImageCardMarkup
+ * @description Card marking method
+ * @param {string} link
+ * @param {string} page
+ * @param {string} title
+ * @param {string} category
+ * @returns {string}
+ */
+const myImageCardMarkup = ((link, page, title, category) => {
+    return `    
+    <div class="card position-relative">
+        <a href="${page}" target="blank"><img data-category="${category}" class="card-img-top image" src="${link}" alt="${title}"></a>
+        <div class="d-flex p-2 justify-content-between align-items-baseline hidden card__header position-absolute">
+            <h4 class="text-white m-0 title">${title}</h4>
+            <button type="button" class="btn btn-sm btn-outline-light ml-1 delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        </div>
+    </div>`
+});
+
+
+/**
+ * @method deleteImage
+ * @description Delete cards
+ * @param {object} event
+ */
 function deleteImage(e) {
     e.currentTarget.parentNode.parentNode.classList.add('d-none');
-}
+};
 
-
-
+/**
+ * @method loadImage
+ * @description Render images when they are already loaded
+ * @param {string} imagePath
+ * @param {string} where
+ */
 async function loadImage(imagePath, where) {
     const target = document.querySelector(where);
-    //target.onload = () => target.style.filter = '';
-    // if (cache[where]) {
-    //     target.style.filter = 'opacity(0)';
-    //     target.src = cache[where];
-    //     return;
-    // }
     try {
         const response = await fetch(imagePath);
         if (response.ok) {
             target.style.filter = 'opacity(0)';
-            const miBlob = await response.blob()
-            const objectURL = URL.createObjectURL(miBlob);
-            //cache[where] = objectURL;
+            const myBlob = await response.blob();
+            const objectURL = URL.createObjectURL(myBlob);
             target.src = objectURL;
             target.onload = () => target.style.filter = 'opacity(1)';
         } else {
-            console.log('Respuesta de red OK pero respuesta HTTP no OK');
-        }
+            console.log('Nextwork OK but wrong HTTP response');
+        };
     } catch (error) {
-        console.log('Hubo un problema con la petición Fetch:' + error.message);
-    }
-}
-
+        console.log('Fetch issues:' + error.message);
+    };
+};
 
 export {
 
-    makeImagesCards
+    makeImagesCards,
+    myGalleryCardMaker
 };
