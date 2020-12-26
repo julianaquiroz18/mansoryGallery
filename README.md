@@ -19,11 +19,11 @@ images. The images need to have an animation each time they get readjusted
 because of the filter.
 - The page needs to have a section where people can add images to the gallery. It
 does not need to be saved locally or to a database. It is purely dynamic. It
-should have
-    i. A field for a link to the image,
-    ii. A field for a link to another page,
-    iii. A select button for the category and also a field the title of the image.
-    iv. This section needs to be hidden by default and open with a button that
+should have:
+    - A field for a link to the image,
+    - A field for a link to another page,
+    - A select button for the category and also a field the title of the image.
+    - This section needs to be hidden by default and open with a button that
     says “add new image”.
 
 - The url needs to be changed as the select filter changes. Also if I go to an url that
