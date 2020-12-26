@@ -69,14 +69,25 @@ const myImageCardMarkup = ((link, page, title, category) => {
     </div>`
 });
 
-
 /**
  * @method deleteImage
  * @description Delete cards
  * @param {object} event
  */
 function deleteImage(e) {
-    e.currentTarget.parentNode.parentNode.classList.add('d-none');
+    e.currentTarget.parentNode.parentNode.remove();
+    checkMyGalleryContent();
+};
+
+/**
+ * @method checkMyGalleryContent
+ * @description Hide My Gallery section when is empty
+ */
+function checkMyGalleryContent() {
+    const myGallery = document.querySelector('.myGallery');
+    if (myGallery.firstElementChild === null) {
+        document.querySelector('.myGallery__container').classList.add('d-none');
+    };
 };
 
 /**

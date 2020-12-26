@@ -19,7 +19,7 @@ function apiRequest(URL, requestInfo) {
                     });
                 };
             })
-            .catch(error => { reject(error) })
+            .catch(error => { reject(error) });
     });
 }
 

@@ -11,12 +11,21 @@ const filterButton = document.querySelector('.filter');
 const categorySelect = document.querySelector('#category');
 const createButton = document.querySelector('.create');
 
+const link = document.querySelector('#imageLink');
+const page = document.querySelector('#pageLink');
+const title = document.querySelector('#imageTitle');
+const category = document.querySelector('#newImageCategory');
+
 /**
  * Events
  */
 window.addEventListener('hashchange', changePage);
 filterButton.addEventListener('click', filter);
 createButton.addEventListener('click', newImage);
+link.addEventListener('input', checkValue);
+page.addEventListener('input', checkValue);
+title.addEventListener('input', checkValue);
+category.addEventListener('input', checkValue);
 
 history.replaceState({}, 'Home', '#home');
 $('#new-image').on('hide.bs.modal', () => { document.getElementById("new-image-form").reset() });
@@ -65,19 +74,31 @@ function changePage() {
 };
 
 /**
- * @method myImageCardMarkup
+ * @method newImage
  * @description Create new image
  */
 function newImage() {
     const myGallery = document.querySelector('.myGallery');
     const newImageInfo = {
-        link: document.querySelector('#imageLink').value,
-        page: document.querySelector('#pageLink').value,
-        title: document.querySelector('#imageTitle').value,
-        category: document.querySelector('#newImageCategory').value
+        link: link.value,
+        page: page.value,
+        title: title.value,
+        category: category.value
     };
     myGalleryCardMaker(newImageInfo, myGallery);
     document.querySelector('.myGallery__container').classList.remove('d-none');
+};
+
+/**
+ * @method checkValue
+ * @description Check form input values to enable create button
+ */
+function checkValue() {
+    if (link.value.trim() && page.value.trim() && title.value.trim() && category.value.trim() != "") {
+        createButton.disabled = false;
+    } else {
+        createButton.disabled = true;
+    };
 };
 
 init();
