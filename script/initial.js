@@ -19,7 +19,7 @@ const category = document.querySelector('#newImageCategory');
 /**
  * Events
  */
-window.addEventListener('hashchange', changePage);
+window.addEventListener('hashchange', init);
 filterButton.addEventListener('click', filter);
 createButton.addEventListener('click', newImage);
 link.addEventListener('input', checkValue);
@@ -27,18 +27,22 @@ page.addEventListener('input', checkValue);
 title.addEventListener('input', checkValue);
 category.addEventListener('input', checkValue);
 
-history.replaceState({}, 'Home', '#home');
-$('#new-image').on('hide.bs.modal', () => { document.getElementById("new-image-form").reset() });
+/**
+ * @description Reset modal when is closed
+ */
+$('#new-image').on('hide.bs.modal', () => {
+    document.getElementById("new-image-form").reset();
+    createButton.disabled = true;
+});
 
 /**
- * @method init
- * @description Get images from API
+ * @method getImages
+ * @description Get images from API without filter
  */
-function init() {
-    const getInitialImages = apiRequest(initialImagesURL);
-    getInitialImages.then((response) => {
+function getImages() {
+    const initialImages = apiRequest(initialImagesURL);
+    initialImages.then((response) => {
         makeImagesCards(response.hits, masonryNode);
-        console.log(response);
     }).catch((error) => { console.log(error) });
 };
 
@@ -55,18 +59,20 @@ function filter() {
         getFilterImages.then((response) => {
             makeImagesCards(response.hits, masonryNode);
         }).catch((error) => { console.log(error) });
+    } else {
+        getImages();
     };
 };
 
 /**
- * @method changePage
+ * @method init
  * @description Change URL according filter selection
  */
-function changePage() {
+function init() {
     const category = window.location.hash.split('#')[1];
-    if (category === 'home') {
+    if (category === undefined) {
         categorySelect.value = "";
-        init();
+        getImages();
     } else {
         categorySelect.value = category;
         filter();
